@@ -1,31 +1,54 @@
 ﻿using MauiApp1ControlePrestacoesServicos.Database;
-using System.Threading.Tasks;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace MauiApp1ControlePrestacoesServicos
 {
     public partial class App : Application
     {
-        public static DatabaseHelper Database { get; private set; }
+        public static DatabaseHelper? Database { get; private set; }
 
         public App()
         {
             InitializeComponent();
         }
 
-        public async Task InitializeAsync()
+        protected override Window CreateWindow(IActivationState? activationState)
         {
-            // Inicializa o banco de dados
-            Database = new DatabaseHelper();
-            await Database.InitializeAsync();
-
-            // Não precisa mais atribuir MainPage aqui
-            // A inicialização visual será feita no método CreateWindow()
+            var window = new Window(new MainPage());
+            return window;
         }
 
-        protected override Window CreateWindow(IActivationState activationState)
+        public async Task InitializeAsync()
         {
-            return new Window(new MainPage());
+            Database = new DatabaseHelper();
+            await Database.InitializeAsync();
         }
     }
 }
+using MauiApp1ControlePrestacoesServicos.Database;
+using Microsoft.Maui.LifecycleEvents;
 
+namespace MauiApp1ControlePrestacoesServicos
+{
+    public partial class App : Application
+    {
+        public static DatabaseHelper? Database { get; private set; }
+
+        public App()
+        {
+            InitializeComponent();
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            var window = new Window(new MainPage());
+            return window;
+        }
+
+        public async Task InitializeAsync()
+        {
+            Database = new DatabaseHelper();
+            await Database.InitializeAsync();
+        }
+    }
+}
