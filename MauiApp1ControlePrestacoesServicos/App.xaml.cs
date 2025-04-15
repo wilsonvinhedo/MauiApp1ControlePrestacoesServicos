@@ -18,7 +18,14 @@ namespace MauiApp1ControlePrestacoesServicos
             Database = new DatabaseHelper();
             await Database.InitializeAsync();
 
-            MainPage = new MainPage(); // Cria a página principal
+            // Não precisa mais atribuir MainPage aqui
+            // A inicialização visual será feita no método CreateWindow()
+        }
+
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            return new Window(new MainPage());
         }
     }
 }
+
