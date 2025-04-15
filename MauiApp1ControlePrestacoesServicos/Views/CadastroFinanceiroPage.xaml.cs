@@ -1,8 +1,8 @@
 namespace MauiApp1ControlePrestacoesServicos.Views;
 
-public partial class NewPage1 : ContentPage
+public partial class CadastroFinanceiroPage : ContentPage
 {
-	public NewPage1()
+	public CadastroFinanceiroPage()
 	{
 		InitializeComponent();
 	}

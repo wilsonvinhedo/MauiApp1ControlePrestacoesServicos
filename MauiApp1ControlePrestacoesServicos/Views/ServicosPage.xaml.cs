@@ -1,9 +1,14 @@
-namespace MauiApp1ControlePrestacoesServicos.Views;
 
-public partial class NewPage1 : ContentPage
+public partial class ServicosPage : ContentPage
 {
-	public NewPage1()
-	{
-		InitializeComponent();
-	}
+    public ServicosPage()
+    {
+        InitializeComponent();
+        // Se quiser adicionar mais lógica aqui, pode
+    }
+
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
 }
