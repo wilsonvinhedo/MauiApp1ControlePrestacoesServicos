@@ -1,15 +1,24 @@
-﻿namespace MauiApp1ControlePrestacoesServicos
+﻿using MauiApp1ControlePrestacoesServicos.Database;
+using System.Threading.Tasks;
+
+namespace MauiApp1ControlePrestacoesServicos
 {
     public partial class App : Application
     {
+        public static DatabaseHelper Database { get; private set; }
+
         public App()
         {
             InitializeComponent();
         }
 
-        protected override Window CreateWindow(IActivationState? activationState)
+        public async Task InitializeAsync()
         {
-            return new Window(new AppShell());
+            // Inicializa o banco de dados
+            Database = new DatabaseHelper();
+            await Database.InitializeAsync();
+
+            MainPage = new MainPage(); // Cria a página principal
         }
     }
 }
