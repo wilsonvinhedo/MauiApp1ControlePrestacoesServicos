@@ -8,8 +8,8 @@
     Title="MauiApp1ControlePrestacoesServicos">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Clientes"
+        ContentTemplate="{DataTemplate views:ClientesPage}"
+        Route="ClientesPage" />
 
 </Shell>
