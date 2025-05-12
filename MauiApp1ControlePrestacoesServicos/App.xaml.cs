@@ -1,54 +1,18 @@
-﻿using MauiApp1ControlePrestacoesServicos.Database;
-using Microsoft.Maui.LifecycleEvents;
-
-namespace MauiApp1ControlePrestacoesServicos
-{
-    public partial class App : Application
-    {
-        public static DatabaseHelper? Database { get; private set; }
-
-        public App()
-        {
-            InitializeComponent();
-        }
-
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            var window = new Window(new MainPage());
-            return window;
-        }
-
-        public async Task InitializeAsync()
-        {
-            Database = new DatabaseHelper();
-            await Database.InitializeAsync();
-        }
-    }
-}
+﻿using Microsoft.Maui.Controls;
 using MauiApp1ControlePrestacoesServicos.Database;
-using Microsoft.Maui.LifecycleEvents;
 
 namespace MauiApp1ControlePrestacoesServicos
 {
     public partial class App : Application
     {
-        public static DatabaseHelper? Database { get; private set; }
+        public static MauiApp1ControlePrestacoesServicos.Database.DatabaseHelper Database { get; private set; }
 
         public App()
         {
             InitializeComponent();
-        }
-
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            var window = new Window(new MainPage());
-            return window;
-        }
-
-        public async Task InitializeAsync()
-        {
-            Database = new DatabaseHelper();
-            await Database.InitializeAsync();
+            MainPage = new AppShell(); // Isso define o AppShell como a página inicial
+            Database = new MauiApp1ControlePrestacoesServicos.Database.DatabaseHelper();
+            _ = Database.InitializeAsync();
         }
     }
 }

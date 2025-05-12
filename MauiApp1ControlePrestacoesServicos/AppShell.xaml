@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell  
-   x:Class="MauiApp1ControlePrestacoesServicos.AppShell"  
-   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
-   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
-   xmlns:local="clr-namespace:MauiApp1ControlePrestacoesServicos"  
-   xmlns:views="clr-namespace:MauiApp1ControlePrestacoesServicos.Views"  
-   Shell.FlyoutBehavior="Flyout"  
-   Title="MauiApp1ControlePrestacoesServicos">  
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:MauiApp1ControlePrestacoesServicos.Views"
+       x:Class="MauiApp1ControlePrestacoesServicos.AppShell"
+       Shell.FlyoutBehavior="Flyout"
+       Title="MauiApp1ControlePrestacoesServicos">
 
-   <ShellContent  
-       Title="Clientes"  
-       ContentTemplate="{DataTemplate views:ClientesPage}"  
-       Route="ClientesPage" />  
+    <ShellContent Title="Clientes" Route="ClientesPage" ContentTemplate="{DataTemplate views:ClientesPage}" />
+    <ShellContent Title="Serviços" Route="ServicosPage" ContentTemplate="{DataTemplate views:ServicosPage}" />
+    <ShellContent Title="Agendamentos" Route="AgendamentosPage" ContentTemplate="{DataTemplate views:AgendamentosPage}" />
+    <ShellContent Title="Financeiro" Route="FinanceiroPage" ContentTemplate="{DataTemplate views:FinanceiroPage}" />
+    <ShellContent Title="Relatório" Route="RelatorioPage" ContentTemplate="{DataTemplate views:RelatorioPage}" />
 
 </Shell>
