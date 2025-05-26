@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
 
 namespace MauiApp1ControlePrestacoesServicos.Models
 {
-    internal class Relatorio
+    public class Relatorio
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        public string Descricao { get; set; }
+
+        public string Detalhes { get; set; }
     }
 }

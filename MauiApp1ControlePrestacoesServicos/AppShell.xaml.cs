@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MauiApp1ControlePrestacoesServicos.Views;
+using Microsoft.Extensions.DependencyInjection;
 using MauiApp1ControlePrestacoesServicos.Database;
 
 namespace MauiApp1ControlePrestacoesServicos;

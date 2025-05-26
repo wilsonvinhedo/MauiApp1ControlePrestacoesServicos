@@ -1,12 +1,36 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1ControlePrestacoesServicos.Views.FinanceiroPage"
-             Title="FinanceiroPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Financeiro">
+
+    <VerticalStackLayout Padding="10">
+        <Entry x:Name="descricaoEntry" Placeholder="Descrição"/>
+        <Entry x:Name="valorEntry" Placeholder="Valor" Keyboard="Numeric"/>
+        <DatePicker x:Name="dataPicker"/>
+        <Switch x:Name="pagoSwitch" IsToggled="False"/>
+        <Label Text="Pago?" />
+
+        <Button Text="Adicionar Registro" Clicked="OnAddFinanceiro"/>
+
+        <CollectionView x:Name="financeiroCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Excluir" BackgroundColor="Red" Invoked="OnDeleteFinanceiro"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="10">
+                            <Label Text="{Binding Descricao}" FontSize="18"/>
+                            <Label Text="{Binding Valor}" FontSize="14"/>
+                            <Label Text="{Binding Data}" FontSize="12"/>
+                            <Label Text="Pago: {Binding Pago}" FontSize="12"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
+
 </ContentPage>

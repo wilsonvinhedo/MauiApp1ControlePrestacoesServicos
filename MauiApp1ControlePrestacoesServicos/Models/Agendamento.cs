@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
+using System;
 
 namespace MauiApp1ControlePrestacoesServicos.Models
 {
-    internal class Agendamento
+    public class Agendamento
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        public int ClienteId { get; set; }
+
+        public int ServicoId { get; set; }
+
+        public DateTime Data { get; set; }
+
+        public string Observacoes { get; set; }
     }
 }

@@ -1,12 +1,35 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1ControlePrestacoesServicos.Views.AgendamentosPage"
-             Title="AgendamentosPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Agendamentos">
+
+    <VerticalStackLayout Padding="10">
+        <Entry x:Name="clienteIdEntry" Placeholder="ID do Cliente" Keyboard="Numeric"/>
+        <Entry x:Name="servicoIdEntry" Placeholder="ID do Serviço" Keyboard="Numeric"/>
+        <DatePicker x:Name="dataPicker"/>
+        <Editor x:Name="obsEntry" Placeholder="Observações"/>
+
+        <Button Text="Adicionar Agendamento" Clicked="OnAddAgendamento"/>
+
+        <CollectionView x:Name="agendamentosCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Excluir" BackgroundColor="Red" Invoked="OnDeleteAgendamento"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="10">
+                            <Label Text="{Binding Data}" FontSize="14"/>
+                            <Label Text="{Binding Observacoes}" FontSize="14"/>
+                            <Label Text="Cliente ID: {Binding ClienteId}" FontSize="12"/>
+                            <Label Text="Serviço ID: {Binding ServicoId}" FontSize="12"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
+
 </ContentPage>

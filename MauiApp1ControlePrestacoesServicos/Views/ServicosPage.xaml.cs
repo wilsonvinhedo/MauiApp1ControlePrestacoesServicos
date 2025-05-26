@@ -1,14 +1,47 @@
+using MauiApp1ControlePrestacoesServicos.Models;
 
-public partial class ServicosPage : ContentPage
+namespace MauiApp1ControlePrestacoesServicos.Views
 {
-    public ServicosPage()
+    public partial class ServicosPage : ContentPage
     {
-        InitializeComponent();
-        // Se quiser adicionar mais lógica aqui, pode
-    }
+        public ServicosPage()
+        {
+            InitializeComponent();
+            LoadServicos();
+        }
 
-    private void InitializeComponent()
-    {
-        throw new NotImplementedException();
+        private async void LoadServicos()
+        {
+            var servicos = await App.Database.GetItemsAsync<Servico>();
+            servicosCollection.ItemsSource = servicos;
+        }
+
+        private async void OnAddServico(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(descricaoEntry.Text))
+            {
+                var servico = new Servico
+                {
+                    Descricao = descricaoEntry.Text,
+                    Valor = decimal.TryParse(valorEntry.Text, out var valor) ? valor : 0
+                };
+
+                await App.Database.SaveItemAsync(servico);
+                descricaoEntry.Text = valorEntry.Text = string.Empty;
+                LoadServicos();
+            }
+        }
+
+        private async void OnDeleteServico(object sender, EventArgs e)
+        {
+            var swipeItem = sender as SwipeItem;
+            var servico = swipeItem.BindingContext as Servico;
+
+            if (servico != null)
+            {
+                await App.Database.DeleteItemAsync(servico);
+                LoadServicos();
+            }
+        }
     }
 }
