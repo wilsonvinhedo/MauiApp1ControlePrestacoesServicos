@@ -47,13 +47,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.60" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+	  <AndroidResource Remove="Converters\**" />
+	  <Compile Remove="Converters\**" />
+	  <EmbeddedResource Remove="Converters\**" />
+	  <MauiCss Remove="Converters\**" />
+	  <MauiXaml Remove="Converters\**" />
+	  <None Remove="Converters\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Converters\" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -93,6 +97,10 @@
 		<MauiXaml Update="Views\ServicosPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="9.0.60" />
 	</ItemGroup>
 
 </Project>
