@@ -1,31 +1,32 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1ControlePrestacoesServicos.Views.ClientesPage"
-             Title="Clientes">
+             xmlns:viewmodels="clr-namespace:MauiAppControlePrestacoesServicos.ViewModels"
+             x:Class="MauiAppControlePrestacoesServicos.Views.ClientePage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ClienteViewModel />
+    </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="10">
-        <Entry x:Name="nomeEntry" Placeholder="Nome"/>
-        <Entry x:Name="telefoneEntry" Placeholder="Telefone"/>
+        <Entry Placeholder="Nome" Text="{Binding ClienteAtual.Nome}" />
+        <Entry Placeholder="Telefone" Text="{Binding ClienteAtual.Telefone}" />
+        <Entry Placeholder="Email" Text="{Binding ClienteAtual.Email}" />
 
-        <Button Text="Adicionar Cliente" Clicked="OnAddCliente"/>
+        <Button Text="Salvar" Command="{Binding SalvarCommand}" />
 
-        <CollectionView x:Name="clientesCollection">
+        <CollectionView ItemsSource="{Binding Clientes}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Excluir" BackgroundColor="Red" Invoked="OnDeleteCliente"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Nome}" FontSize="18"/>
-                            <Label Text="{Binding Telefone}" FontSize="14"/>
-                        </Grid>
-                    </SwipeView>
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding Nome}" WidthRequest="120"/>
+                        <Label Text="{Binding Telefone}" WidthRequest="100"/>
+                        <Label Text="{Binding Email}" WidthRequest="150"/>
+                        <Button Text="Excluir"
+                                Command="{Binding BindingContext.ExcluirCommand, Source={x:Reference Name=ClientePage}}"
+                                CommandParameter="{Binding .}"/>
+                    </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
-
 </ContentPage>

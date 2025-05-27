@@ -1,14 +1,11 @@
-﻿using SQLite;
-
-namespace MauiApp1ControlePrestacoesServicos.Models
+﻿namespace MauiAppControlePrestacoesServicos.Models
 {
     public class Relatorio
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        public string Descricao { get; set; }
-
-        public string Detalhes { get; set; }
+        public DateTime DataInicial { get; set; }
+        public DateTime DataFinal { get; set; }
+        public decimal TotalEntradas { get; set; }
+        public decimal TotalSaidas { get; set; }
+        public decimal Saldo { get; set; }
     }
 }

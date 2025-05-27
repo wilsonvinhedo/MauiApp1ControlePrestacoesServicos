@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using MauiApp1ControlePrestacoesServicos.Database;
+﻿using MauiAppControlePrestacoesServicos.Database;
 
 namespace MauiApp1ControlePrestacoesServicos;
 

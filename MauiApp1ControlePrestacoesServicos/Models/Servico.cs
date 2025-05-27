@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
 
-namespace MauiApp1ControlePrestacoesServicos.Models
+namespace MauiAppControlePrestacoesServicos.Models
 {
-    internal class Servico
+    public class Servico
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string Descricao { get; set; }
+        public decimal Preco { get; set; }
     }
 }
