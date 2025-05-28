@@ -1,4 +1,4 @@
-﻿using MauiAppControlePrestacoesServicos.Database;
+﻿using MauiApp1ControlePrestacoesServicos.Database;
 
 namespace MauiApp1ControlePrestacoesServicos;
 

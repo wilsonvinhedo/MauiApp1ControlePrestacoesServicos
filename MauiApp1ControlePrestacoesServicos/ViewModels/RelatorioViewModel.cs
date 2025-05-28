@@ -2,11 +2,11 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using MauiAppControlePrestacoesServicos.Models;
-using MauiAppControlePrestacoesServicos.Database;
+using MauiApp1ControlePrestacoesServicos.Models;
+using MauiApp1ControlePrestacoesServicos.Database;
 using Microsoft.Maui.Controls;
 
-namespace MauiAppControlePrestacoesServicos.ViewModels
+namespace MauiApp1ControlePrestacoesServicos.ViewModels
 {
     public class RelatorioViewModel : INotifyPropertyChanged
     {

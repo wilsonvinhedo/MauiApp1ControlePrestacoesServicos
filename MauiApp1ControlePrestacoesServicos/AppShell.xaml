@@ -6,10 +6,13 @@
     x:Class="MauiApp1ControlePrestacoesServicos.AppShell">
 
     <TabBar>
-        <ShellContent Title="Clientes" ContentTemplate="{DataTemplate views:ClientesPage}" />
-        <ShellContent Title="Serviços" ContentTemplate="{DataTemplate views:ServicosPage}" />
-        <ShellContent Title="Agendamentos" ContentTemplate="{DataTemplate views:AgendamentosPage}" />
-        <ShellContent Title="Financeiro" ContentTemplate="{DataTemplate views:FinanceiroPage}" />
-        <ShellContent Title="Relatórios" ContentTemplate="{DataTemplate views:RelatoriosPage}" />
+        <!-- Cada módulo acessível via ShellContent -->
+        <ShellContent Title="Clientes" ContentTemplate="{DataTemplate views:ClientesPage}" Route="ClientesPage"/>
+        <ShellContent Title="Serviços" ContentTemplate="{DataTemplate views:ServicosPage}" Route="ServicosPage"/>
+        <ShellContent Title="Agendamentos" ContentTemplate="{DataTemplate views:AgendamentosPage}" Route="AgendamentosPage"/>
+        <ShellContent Title="Financeiro" ContentTemplate="{DataTemplate views:FinanceiroPage}" Route="FinanceiroPage"/>
+        <ShellContent Title="Relatórios" ContentTemplate="{DataTemplate views:RelatorioPage}" Route="RelatorioPage"/>
     </TabBar>
 </Shell>
+
+

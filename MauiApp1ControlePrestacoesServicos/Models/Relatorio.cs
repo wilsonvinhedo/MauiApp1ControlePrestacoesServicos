@@ -1,4 +1,4 @@
-﻿namespace MauiAppControlePrestacoesServicos.Models
+﻿namespace MauiApp1ControlePrestacoesServicos.Models
 {
     public class Relatorio
     {

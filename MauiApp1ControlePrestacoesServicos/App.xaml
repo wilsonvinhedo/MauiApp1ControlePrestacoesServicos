@@ -1,8 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1ControlePrestacoesServicos.App">
+<Application 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:converters="clr-namespace:ControlePrestacoesServicos.Converters"
+    x:Class="MauiApp1ControlePrestacoesServicos.App">
     <Application.Resources>
-        <!-- Recursos globais podem ser adicionados aqui -->
+        <ResourceDictionary>
+            <!-- Cores e estilos globais -->
+            <Color x:Key="PrimaryColor">#3498db</Color>
+            <Color x:Key="AccentColor">#2ecc71</Color>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <!-- Conversor para exibir saldo (verde para positivo, vermelho para negativo) -->
+            <converters:SaldoColorConverter x:Key="SaldoColorConverter" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,7 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:MauiAppControlePrestacoesServicos.ViewModels"
-             x:Class="MauiAppControlePrestacoesServicos.Views.ClientePage">
+             xmlns:viewmodels="clr-namespace:MauiApp1ControlePrestacoesServicos.ViewModels"
+             x:Class="MauiApp1ControlePrestacoesServicos.Views.ClientePage">
 
     <ContentPage.BindingContext>
         <viewmodels:ClienteViewModel />

@@ -1,9 +1,9 @@
 ﻿using SQLite;
-using MauiAppControlePrestacoesServicos.Models;
+using MauiApp1ControlePrestacoesServicos.Models;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MauiAppControlePrestacoesServicos.Database
+namespace MauiApp1ControlePrestacoesServicos.Database
 {
     public class DatabaseHelper
     {
