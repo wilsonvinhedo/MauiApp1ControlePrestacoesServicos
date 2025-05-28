@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1ControlePrestacoesServicos.Views.CadastroClientePage"
-             Title="CadastroClientePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:MauiApp1ControlePrestacoesServicos.ViewModels"
+             x:Class="MauiApp1ControlePrestacoesServicos.Views.CadastroClientePage">
+
+    <ContentPage.BindingContext>
+        <vm:CadastroClienteViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label Text="Cadastro de Cliente" FontSize="24" HorizontalOptions="Center" />
+            <Entry x:Name="nomeEntry" Placeholder="Nome" Text="{Binding ClienteAtual.Nome}" />
+            <Entry x:Name="emailEntry" Placeholder="Email" Text="{Binding ClienteAtual.Email}" />
+            <Entry x:Name="telefoneEntry" Placeholder="Telefone" Text="{Binding ClienteAtual.Telefone}" />
+            <Button Text="Salvar Cliente" Command="{Binding SalvarCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

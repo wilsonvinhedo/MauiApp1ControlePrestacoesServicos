@@ -10,8 +10,8 @@
     <ScrollView>
         <VerticalStackLayout Padding="20">
             <Label Text="Cadastro de Serviço" FontSize="24" HorizontalOptions="Center" />
-            <Entry Placeholder="Nome do Serviço" Text="{Binding Nome}" />
-            <Entry Placeholder="Preço" Keyboard="Numeric" Text="{Binding Preco}" />
+            <Entry x:Name="nomeEntry" Placeholder="Nome do Serviço" Text="{Binding ServicoAtual.Nome}" />
+            <Entry x:Name="precoEntry" Placeholder="Preço" Keyboard="Numeric" Text="{Binding ServicoAtual.Preco}" />
             <Button Text="Salvar Serviço" Command="{Binding SalvarCommand}" />
         </VerticalStackLayout>
     </ScrollView>

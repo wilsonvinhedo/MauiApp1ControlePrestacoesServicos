@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MauiApp1ControlePrestacoesServicos.Models;
-using MauiApp1ControlePrestacoesServicos.Database;
 using Microsoft.Maui.Controls;
 
 namespace MauiApp1ControlePrestacoesServicos.ViewModels
@@ -10,15 +9,10 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
     public class CadastroServicoViewModel : INotifyPropertyChanged
     {
         private Servico _servico = new();
-
         public Servico ServicoAtual
         {
             get => _servico;
-            set
-            {
-                _servico = value;
-                OnPropertyChanged();
-            }
+            set { _servico = value; OnPropertyChanged(); }
         }
 
         public ICommand SalvarCommand { get; }

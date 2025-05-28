@@ -10,15 +10,10 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
     public class CadastroClienteViewModel : INotifyPropertyChanged
     {
         private Cliente _cliente = new();
-
         public Cliente ClienteAtual
         {
             get => _cliente;
-            set
-            {
-                _cliente = value;
-                OnPropertyChanged();
-            }
+            set { _cliente = value; OnPropertyChanged(); }
         }
 
         public ICommand SalvarCommand { get; }
@@ -31,11 +26,11 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
         private async Task SalvarCliente()
         {
             await App.Database.SaveAsync(ClienteAtual);
-            ClienteAtual = new Cliente(); // Limpa formulário
+            ClienteAtual = new Cliente();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        void OnPropertyChanged([CallerMemberName] string nome = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nome));
     }
 }

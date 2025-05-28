@@ -10,9 +10,9 @@
     <ScrollView>
         <VerticalStackLayout Padding="20">
             <Label Text="Cadastro de Agendamento" FontSize="24" HorizontalOptions="Center" />
-            <Entry Placeholder="Descrição" Text="{Binding Descricao}" />
-            <DatePicker Date="{Binding Data}" />
-            <Entry Placeholder="Status" Text="{Binding Status}" />
+            <Entry x:Name="descricaoEntry" Placeholder="Descrição" Text="{Binding AgendamentoAtual.Descricao}" />
+            <DatePicker Date="{Binding AgendamentoAtual.Data}" />
+            <Entry x:Name="statusEntry" Placeholder="Status" Text="{Binding AgendamentoAtual.Status}" />
             <Button Text="Salvar Agendamento" Command="{Binding SalvarCommand}" />
         </VerticalStackLayout>
     </ScrollView>
