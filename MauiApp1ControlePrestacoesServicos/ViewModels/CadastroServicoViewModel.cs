@@ -1,12 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using MauiApp1ControlePrestacoesServicos.Models;
+using MauiApp1ControlePrestacoesServicos.Database;
+using Microsoft.Maui.Controls;
 
 namespace MauiApp1ControlePrestacoesServicos.ViewModels
 {
-    internal class CadastroServicoViewModel
+    public class CadastroServicoViewModel : INotifyPropertyChanged
     {
+        private Servico _servico = new();
+
+        public Servico ServicoAtual
+        {
+            get => _servico;
+            set
+            {
+                _servico = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand SalvarCommand { get; }
+
+        public CadastroServicoViewModel()
+        {
+            SalvarCommand = new Command(async () => await SalvarServico());
+        }
+
+        private async Task SalvarServico()
+        {
+            await App.Database.SaveAsync(ServicoAtual);
+            ServicoAtual = new Servico();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string name = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

@@ -1,4 +1,4 @@
-﻿using MauiApp1ControlePrestacoesServicos.Database;
+﻿using Microsoft.Extensions.Logging;
 
 namespace MauiApp1ControlePrestacoesServicos;
 
@@ -15,11 +15,9 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        // Registrar o DatabaseHelper como um serviço singleton
-        builder.Services.AddSingleton<DatabaseHelper>();
-
-        // Registrar o AppShell como a página inicial
-        builder.Services.AddSingleton<Shell>(s => new AppShell());
+#if DEBUG
+        builder.Logging.AddDebug();
+#endif
 
         return builder.Build();
     }

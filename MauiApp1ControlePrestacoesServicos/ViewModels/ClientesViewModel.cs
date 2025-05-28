@@ -3,12 +3,11 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MauiApp1ControlePrestacoesServicos.Models;
-using MauiApp1ControlePrestacoesServicos.Database;
 using Microsoft.Maui.Controls;
 
 namespace MauiApp1ControlePrestacoesServicos.ViewModels
 {
-    public class ClienteViewModel : INotifyPropertyChanged
+    public class ClientesViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Cliente> Clientes { get; set; } = new();
         private Cliente _cliente = new();
@@ -16,25 +15,20 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
         public Cliente ClienteAtual
         {
             get => _cliente;
-            set
-            {
-                _cliente = value;
-                OnPropertyChanged();
-            }
+            set { _cliente = value; OnPropertyChanged(); }
         }
 
         public ICommand SalvarCommand { get; }
         public ICommand ExcluirCommand { get; }
 
-        public ClienteViewModel()
+        public ClientesViewModel()
         {
-            SalvarCommand = new Command(async () => await SalvarCliente());
-            ExcluirCommand = new Command<Cliente>(async (cli) => await ExcluirCliente(cli));
-
-            _ = CarregarClientes();
+            SalvarCommand = new Command(async () => await Salvar());
+            ExcluirCommand = new Command<Cliente>(async (cli) => await Excluir(cli));
+            _ = Carregar();
         }
 
-        private async Task CarregarClientes()
+        private async Task Carregar()
         {
             var lista = await App.Database.GetAllAsync<Cliente>();
             Clientes.Clear();
@@ -42,17 +36,17 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
                 Clientes.Add(item);
         }
 
-        private async Task SalvarCliente()
+        private async Task Salvar()
         {
             await App.Database.SaveAsync(ClienteAtual);
             ClienteAtual = new Cliente();
-            await CarregarClientes();
+            await Carregar();
         }
 
-        private async Task ExcluirCliente(Cliente cli)
+        private async Task Excluir(Cliente cli)
         {
             await App.Database.DeleteAsync(cli);
-            await CarregarClientes();
+            await Carregar();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

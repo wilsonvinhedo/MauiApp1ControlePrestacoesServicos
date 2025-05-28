@@ -3,12 +3,11 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MauiApp1ControlePrestacoesServicos.Models;
-using MauiApp1ControlePrestacoesServicos.Database;
 using Microsoft.Maui.Controls;
 
 namespace MauiApp1ControlePrestacoesServicos.ViewModels
 {
-    public class ServicoViewModel : INotifyPropertyChanged
+    public class ServicosViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Servico> Servicos { get; set; } = new();
         private Servico _servico = new();
@@ -16,25 +15,20 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
         public Servico ServicoAtual
         {
             get => _servico;
-            set
-            {
-                _servico = value;
-                OnPropertyChanged();
-            }
+            set { _servico = value; OnPropertyChanged(); }
         }
 
         public ICommand SalvarCommand { get; }
         public ICommand ExcluirCommand { get; }
 
-        public ServicoViewModel()
+        public ServicosViewModel()
         {
-            SalvarCommand = new Command(async () => await SalvarServico());
-            ExcluirCommand = new Command<Servico>(async (serv) => await ExcluirServico(serv));
-
-            _ = CarregarServicos();
+            SalvarCommand = new Command(async () => await Salvar());
+            ExcluirCommand = new Command<Servico>(async (serv) => await Excluir(serv));
+            _ = Carregar();
         }
 
-        private async Task CarregarServicos()
+        private async Task Carregar()
         {
             var lista = await App.Database.GetAllAsync<Servico>();
             Servicos.Clear();
@@ -42,17 +36,17 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
                 Servicos.Add(item);
         }
 
-        private async Task SalvarServico()
+        private async Task Salvar()
         {
             await App.Database.SaveAsync(ServicoAtual);
             ServicoAtual = new Servico();
-            await CarregarServicos();
+            await Carregar();
         }
 
-        private async Task ExcluirServico(Servico serv)
+        private async Task Excluir(Servico serv)
         {
             await App.Database.DeleteAsync(serv);
-            await CarregarServicos();
+            await Carregar();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

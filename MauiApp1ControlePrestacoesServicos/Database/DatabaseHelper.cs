@@ -2,6 +2,7 @@
 using MauiApp1ControlePrestacoesServicos.Models;
 using System.IO;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace MauiApp1ControlePrestacoesServicos.Database
 {
@@ -22,16 +23,12 @@ namespace MauiApp1ControlePrestacoesServicos.Database
             await _database.CreateTableAsync<Servico>();
             await _database.CreateTableAsync<Agendamento>();
             await _database.CreateTableAsync<Financeiro>();
+            await _database.CreateTableAsync<Relatorio>();
         }
 
-        // CRUD GENÉRICO
-        public Task<List<T>> GetAllAsync<T>() where T : new()
-            => _database.Table<T>().ToListAsync();
-
-        public Task<int> SaveAsync<T>(T item) where T : new()
-            => _database.InsertOrReplaceAsync(item);
-
-        public Task<int> DeleteAsync<T>(T item) where T : new()
-            => _database.DeleteAsync(item);
+        // CRUD Genérico
+        public Task<List<T>> GetAllAsync<T>() where T : new() => _database.Table<T>().ToListAsync();
+        public Task<int> SaveAsync<T>(T item) where T : new() => _database.InsertOrReplaceAsync(item);
+        public Task<int> DeleteAsync<T>(T item) where T : new() => _database.DeleteAsync(item);
     }
 }

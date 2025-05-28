@@ -1,18 +1,15 @@
-﻿using System.Threading.Tasks;
-using MauiApp1ControlePrestacoesServicos.Database;
+﻿using MauiApp1ControlePrestacoesServicos.Database;
 
-namespace ControlePrestacoesServicos
+namespace MauiApp1ControlePrestacoesServicos;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    private static DatabaseHelper _database;
+    public static DatabaseHelper Database => _database ??= new DatabaseHelper();
+
+    public App()
     {
-        public static DatabaseHelper Database { get; private set; }
-        public App()
-        {
-            InitializeComponent();
-            Database = new DatabaseHelper();
-            // Inicializa o banco (pode ser aguardado conforme necessidade)
-            Task.Run(async () => await Database.InitializeAsync());
-            MainPage = new AppShell();
-        }
+        InitializeComponent();
+        MainPage = new AppShell();
     }
 }

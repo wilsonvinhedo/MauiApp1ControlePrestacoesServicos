@@ -21,4 +21,9 @@ public partial class AppShell : Shell
         // Define a página inicial
         GoToAsync("//ClientesPage");
     }
+
+    private object RelatorioPage()
+    {
+        throw new NotImplementedException();
+    }
 }

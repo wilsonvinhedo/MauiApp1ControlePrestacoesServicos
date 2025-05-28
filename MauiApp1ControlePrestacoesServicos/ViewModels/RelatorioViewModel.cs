@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MauiApp1ControlePrestacoesServicos.Models;
-using MauiApp1ControlePrestacoesServicos.Database;
 using Microsoft.Maui.Controls;
 
 namespace MauiApp1ControlePrestacoesServicos.ViewModels
@@ -23,7 +22,7 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
             }
         }
 
-        public ICommand GerarRelatorioCommand { get; } // Comando específico para gerar relatórios
+        public ICommand GerarRelatorioCommand { get; }
         public ICommand ExcluirCommand { get; }
 
         public RelatorioViewModel()
@@ -36,7 +35,7 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
 
         private async Task CarregarRelatorios()
         {
-            var lista = await App.Database.GetAllAsync<Relatorio>();
+            var lista = await App.Database.GetRelatoriosAsync();
             Relatorios.Clear();
             foreach (var item in lista)
                 Relatorios.Add(item);
@@ -44,17 +43,16 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
 
         private async Task GerarRelatorio()
         {
-            // Lógica específica para gerar um relatório (ex: preencher dados calculados)
-            RelatorioAtual.DataGeracao = DateTime.Now; // Exemplo: define a data atual
+            RelatorioAtual.DataGeracao = DateTime.Now;
 
-            await App.Database.SaveAsync(RelatorioAtual);
-            RelatorioAtual = new Relatorio(); // Reseta o formulário
+            await App.Database.SaveRelatorioAsync(RelatorioAtual);
+            RelatorioAtual = new Relatorio();
             await CarregarRelatorios();
         }
 
         private async Task ExcluirRelatorio(Relatorio rel)
         {
-            await App.Database.DeleteAsync(rel);
+            await App.Database.DeleteRelatorioAsync(rel); // Este método precisa ser criado
             await CarregarRelatorios();
         }
 

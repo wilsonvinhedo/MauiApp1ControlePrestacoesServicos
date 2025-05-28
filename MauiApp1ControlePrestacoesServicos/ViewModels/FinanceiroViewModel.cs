@@ -3,56 +3,52 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MauiApp1ControlePrestacoesServicos.Models;
-using MauiApp1ControlePrestacoesServicos.Database;
 using Microsoft.Maui.Controls;
 
 namespace MauiApp1ControlePrestacoesServicos.ViewModels
 {
     public class FinanceiroViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Financeiro> Financeiros { get; set; } = new();
+        public ObservableCollection<Financeiro> Lancamentos { get; set; } = new();
         private Financeiro _financeiro = new();
 
-        public Financeiro FinanceiroAtual
+        public Financeiro LancamentoAtual
         {
             get => _financeiro;
-            set
-            {
-                _financeiro = value;
-                OnPropertyChanged();
-            }
+            set { _financeiro = value; OnPropertyChanged(); }
         }
+
+        public List<string> Tipos => new() { "Receita", "Despesa" };
 
         public ICommand SalvarCommand { get; }
         public ICommand ExcluirCommand { get; }
 
         public FinanceiroViewModel()
         {
-            SalvarCommand = new Command(async () => await SalvarFinanceiro());
-            ExcluirCommand = new Command<Financeiro>(async (financ) => await ExcluirFinanceiro(financ));
-
-            _ = CarregarFinanceiros();
+            SalvarCommand = new Command(async () => await Salvar());
+            ExcluirCommand = new Command<Financeiro>(async (fin) => await Excluir(fin));
+            _ = Carregar();
         }
 
-        private async Task CarregarFinanceiros()
+        private async Task Carregar()
         {
             var lista = await App.Database.GetAllAsync<Financeiro>();
-            Financeiros.Clear();
+            Lancamentos.Clear();
             foreach (var item in lista)
-                Financeiros.Add(item);
+                Lancamentos.Add(item);
         }
 
-        private async Task SalvarFinanceiro()
+        private async Task Salvar()
         {
-            await App.Database.SaveAsync(FinanceiroAtual);
-            FinanceiroAtual = new Financeiro();
-            await CarregarFinanceiros();
+            await App.Database.SaveAsync(LancamentoAtual);
+            LancamentoAtual = new Financeiro();
+            await Carregar();
         }
 
-        private async Task ExcluirFinanceiro(Financeiro financ)
+        private async Task Excluir(Financeiro fin)
         {
-            await App.Database.DeleteAsync(financ);
-            await CarregarFinanceiros();
+            await App.Database.DeleteAsync(fin);
+            await Carregar();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
