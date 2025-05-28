@@ -4,10 +4,19 @@ namespace MauiApp1ControlePrestacoesServicos.Views
 {
     public partial class ClientesPage : ContentPage
     {
+        private object clientesCollection;
+        private object nomeEntry;
+        private object telefoneEntry;
+
         public ClientesPage()
         {
             InitializeComponent();
             LoadClientes();
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
         }
 
         private async void LoadClientes()

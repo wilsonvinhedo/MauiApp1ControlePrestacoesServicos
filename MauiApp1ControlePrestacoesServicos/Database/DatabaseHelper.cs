@@ -2,6 +2,7 @@
 using MauiApp1ControlePrestacoesServicos.Models;
 using System.IO;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace MauiApp1ControlePrestacoesServicos.Database
 {
@@ -50,5 +51,60 @@ namespace MauiApp1ControlePrestacoesServicos.Database
         public Task<List<Relatorio>> GetRelatoriosAsync() => _database.Table<Relatorio>().ToListAsync();
         public Task<int> SaveRelatorioAsync(Relatorio item) => _database.InsertOrReplaceAsync(item);
         public Task<int> DeleteRelatorioAsync(Relatorio item) => _database.DeleteAsync(item);
+
+        internal async Task<IEnumerable> GetItemsAsync<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task SaveItemAsync(Agendamento agendamento)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task DeleteItemAsync(Agendamento agendamento)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task SaveItemAsync(Cliente cliente)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task DeleteItemAsync(Cliente cliente)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task SaveItemAsync(Financeiro financeiro)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task DeleteItemAsync(Financeiro registro)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task SaveItemAsync(Relatorio relatorio)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task DeleteItemAsync(Relatorio relatorio)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task SaveItemAsync(Servico servico)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task DeleteItemAsync(Servico servico)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

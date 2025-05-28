@@ -10,5 +10,6 @@ namespace MauiApp1ControlePrestacoesServicos.Models
         public int ServicoId { get; set; }
         public DateTime Data { get; set; }
         public string Observacao { get; set; }
+        public string Observacoes { get; internal set; }
     }
 }

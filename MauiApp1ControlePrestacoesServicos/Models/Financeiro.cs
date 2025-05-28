@@ -4,6 +4,8 @@ namespace MauiApp1ControlePrestacoesServicos.Models
 {
     public class Financeiro
     {
+        internal bool Pago;
+
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public DateTime Data { get; set; }
