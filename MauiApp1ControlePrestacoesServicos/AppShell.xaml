@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:MauiApp1ControlePrestacoesServicos.Views"
        x:Class="MauiApp1ControlePrestacoesServicos.AppShell">
 
     <ShellItem Title="Menu" Route="main">
-        <ShellContent Title="Clientes" ContentTemplate="{DataTemplate views:CadastroClientePage}" />
-        <ShellContent Title="Serviços" ContentTemplate="{DataTemplate views:CadastroServicoPage}" />
-        <ShellContent Title="Agendamentos" ContentTemplate="{DataTemplate views:CadastroAgendamentoPage}" />
-        <ShellContent Title="Financeiro" ContentTemplate="{DataTemplate views:CadastroFinanceiroPage}" />
+        <ShellContent Title="Clientes" ContentTemplate="{DataTemplate views:ClientesPage}" />
+        <!-- Corrigido -->
+        <ShellContent Title="Serviços" ContentTemplate="{DataTemplate views:ServicosPage}" />
+        <ShellContent Title="Agendamentos" ContentTemplate="{DataTemplate views:AgendamentosPage}" />
+        <ShellContent Title="Financeiro" ContentTemplate="{DataTemplate views:FinanceiroPage}" />
         <ShellContent Title="Relatórios" ContentTemplate="{DataTemplate views:RelatorioPage}" />
     </ShellItem>
-
 </Shell>
