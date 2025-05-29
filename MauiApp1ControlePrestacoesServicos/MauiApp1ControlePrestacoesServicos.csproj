@@ -47,15 +47,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AndroidResource Remove="Converters\**" />
-	  <Compile Remove="Converters\**" />
-	  <EmbeddedResource Remove="Converters\**" />
-	  <MauiCss Remove="Converters\**" />
-	  <MauiXaml Remove="Converters\**" />
-	  <None Remove="Converters\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.5">
