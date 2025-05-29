@@ -1,56 +1,24 @@
-using MauiApp1ControlePrestacoesServicos.Models;
+﻿using MauiApp1ControlePrestacoesServicos.Models;
+using MauiApp1ControlePrestacoesServicos.ViewModels;
 
-namespace MauiApp1ControlePrestacoesServicos.Views
+namespace MauiApp1ControlePrestacoesServicos.Views;
+
+public partial class ClientesPage : ContentPage
 {
-    public partial class ClientesPage : ContentPage
+    private readonly ClientesViewModel ViewModel;
+
+    public ClientesPage() // ✅ Construtor correto: não tem tipo de retorno!
     {
-        private object clientesCollection;
-        private object nomeEntry;
-        private object telefoneEntry;
+        InitializeComponent();
+        ViewModel = new ClientesViewModel();
+        BindingContext = ViewModel;
+    }
 
-        public ClientesPage()
+    private async void OnExcluirClicked(object sender, EventArgs e)
+    {
+        if (clientesCollection.SelectedItem is Cliente clienteSelecionado)
         {
-            InitializeComponent();
-            LoadClientes();
-        }
-
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
-        }
-
-        private async void LoadClientes()
-        {
-            var clientes = await App.Database.GetItemsAsync<Cliente>();
-            clientesCollection.ItemsSource = clientes;
-        }
-
-        private async void OnAddCliente(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(nomeEntry.Text))
-            {
-                var cliente = new Cliente
-                {
-                    Nome = nomeEntry.Text,
-                    Telefone = telefoneEntry.Text
-                };
-
-                await App.Database.SaveItemAsync(cliente);
-                nomeEntry.Text = telefoneEntry.Text = string.Empty;
-                LoadClientes();
-            }
-        }
-
-        private async void OnDeleteCliente(object sender, EventArgs e)
-        {
-            var swipeItem = sender as SwipeItem;
-            var cliente = swipeItem.BindingContext as Cliente;
-
-            if (cliente != null)
-            {
-                await App.Database.DeleteItemAsync(cliente);
-                LoadClientes();
-            }
+            await ViewModel.ExcluirCliente(clienteSelecionado);
         }
     }
 }

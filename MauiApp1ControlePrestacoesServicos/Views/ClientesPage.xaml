@@ -1,32 +1,35 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MauiApp1ControlePrestacoesServicos.ViewModels"
-             x:Class="MauiApp1ControlePrestacoesServicos.Views.ClientePage">
+             x:Class="MauiApp1ControlePrestacoesServicos.Views.ClientesPage"
+             x:Name="ClientesPage">
 
     <ContentPage.BindingContext>
-        <viewmodels:ClienteViewModel />
+        <viewmodels:ClientesViewModel />
     </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="10">
-        <Entry Placeholder="Nome" Text="{Binding ClienteAtual.Nome}" />
-        <Entry Placeholder="Telefone" Text="{Binding ClienteAtual.Telefone}" />
-        <Entry Placeholder="Email" Text="{Binding ClienteAtual.Email}" />
+        <Entry x:Name="nomeEntry" Placeholder="Nome" Text="{Binding ClienteAtual.Nome}" />
+        <Entry x:Name="telefoneEntry" Placeholder="Telefone" Text="{Binding ClienteAtual.Telefone}" />
+        <Entry x:Name="emailEntry" Placeholder="Email" Text="{Binding ClienteAtual.Email}" />
 
         <Button Text="Salvar" Command="{Binding SalvarCommand}" />
 
-        <CollectionView ItemsSource="{Binding Clientes}">
+        <CollectionView x:Name="clientesCollection"
+                        ItemsSource="{Binding Clientes}"
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <HorizontalStackLayout>
                         <Label Text="{Binding Nome}" WidthRequest="120"/>
                         <Label Text="{Binding Telefone}" WidthRequest="100"/>
                         <Label Text="{Binding Email}" WidthRequest="150"/>
-                        <Button Text="Excluir"
-                                Command="{Binding BindingContext.ExcluirCommand, Source={x:Reference Name=ClientePage}}"
-                                CommandParameter="{Binding .}"/>
+                        <!-- Excluir ao selecionar na CollectionView -->
                     </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Button Text="Excluir Selecionado" Clicked="OnExcluirClicked" />
     </VerticalStackLayout>
 </ContentPage>

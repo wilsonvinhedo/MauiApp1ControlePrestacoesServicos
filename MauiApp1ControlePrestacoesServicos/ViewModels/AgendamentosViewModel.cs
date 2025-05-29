@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MauiApp1ControlePrestacoesServicos.Models;
-using Microsoft.Maui.Controls;
 
 namespace MauiApp1ControlePrestacoesServicos.ViewModels
 {

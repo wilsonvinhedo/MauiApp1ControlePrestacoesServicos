@@ -52,5 +52,10 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        internal async Task ExcluirCliente(Cliente clienteSelecionado)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
