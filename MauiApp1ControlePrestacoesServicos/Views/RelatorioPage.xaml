@@ -1,7 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1ControlePrestacoesServicos.Views.RelatoriosPage"
-             Title="Relatórios">
+             x:Class="MauiApp1ControlePrestacoesServicos.Views.RelatorioPage"
+             Title="Relatório">
 
     <VerticalStackLayout Padding="10">
         <Entry x:Name="descricaoEntry" Placeholder="Descrição"/>
@@ -9,7 +9,7 @@
 
         <Button Text="Adicionar Relatório" Clicked="OnAddRelatorio"/>
 
-        <CollectionView x:Name="relatoriosCollection">
+        <CollectionView x:Name="relatorioCollection">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>

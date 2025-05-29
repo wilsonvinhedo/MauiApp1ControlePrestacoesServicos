@@ -9,6 +9,6 @@
         <ShellContent Title="Serviços" ContentTemplate="{DataTemplate views:ServicosPage}" />
         <ShellContent Title="Agendamentos" ContentTemplate="{DataTemplate views:AgendamentosPage}" />
         <ShellContent Title="Financeiro" ContentTemplate="{DataTemplate views:FinanceiroPage}" />
-        <ShellContent Title="Relatórios" ContentTemplate="{DataTemplate views:RelatorioPage}" />
+        <ShellContent Title="Relatório" ContentTemplate="{DataTemplate views:RelatorioPage}" />
     </ShellItem>
 </Shell>

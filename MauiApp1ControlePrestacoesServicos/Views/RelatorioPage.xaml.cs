@@ -2,18 +2,18 @@ using MauiApp1ControlePrestacoesServicos.Models;
 
 namespace MauiApp1ControlePrestacoesServicos.Views
 {
-    public partial class RelatoriosPage : ContentPage
+    public partial class RelatorioPage : ContentPage
     {
-        public RelatoriosPage()
+        public RelatorioPage()
         {
             InitializeComponent();
-            LoadRelatorios();
+            LoadRelatorio();
         }
 
-        private async void LoadRelatorios()
+        private async void LoadRelatorio()
         {
-            var relatorios = await App.Database.GetItemsAsync<Relatorio>();
-            relatoriosCollection.ItemsSource = relatorios;
+            var relatorio = await App.Database.GetItemsAsync<Relatorio>();
+            relatorioCollection.ItemsSource = relatorio;
         }
 
         private async void OnAddRelatorio(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace MauiApp1ControlePrestacoesServicos.Views
 
             await App.Database.SaveItemAsync(relatorio);
             descricaoEntry.Text = detalhesEntry.Text = string.Empty;
-            LoadRelatorios();
+            LoadRelatorio();
         }
 
         private async void OnDeleteRelatorio(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace MauiApp1ControlePrestacoesServicos.Views
             if (relatorio != null)
             {
                 await App.Database.DeleteItemAsync(relatorio);
-                LoadRelatorios();
+                LoadRelatorio();
             }
         }
     }

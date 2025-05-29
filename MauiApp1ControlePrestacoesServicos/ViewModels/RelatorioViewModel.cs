@@ -9,7 +9,7 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
 {
     public class RelatorioViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Relatorio> Relatorios { get; set; } = new();
+        public ObservableCollection<Relatorio> Relatorio { get; set; } = new();
         private Relatorio _relatorio = new();
 
         public Relatorio RelatorioAtual
@@ -30,15 +30,15 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
             GerarRelatorioCommand = new Command(async () => await GerarRelatorio());
             ExcluirCommand = new Command<Relatorio>(async (rel) => await ExcluirRelatorio(rel));
 
-            _ = CarregarRelatorios();
+            _ = CarregarRelatorio();
         }
 
-        private async Task CarregarRelatorios()
+        private async Task CarregarRelatorio()
         {
             var lista = await App.Database.GetRelatoriosAsync();
-            Relatorios.Clear();
+            Relatorio.Clear();
             foreach (var item in lista)
-                Relatorios.Add(item);
+                Relatorio.Add(item);
         }
 
         private async Task GerarRelatorio()
@@ -47,13 +47,13 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
 
             await App.Database.SaveRelatorioAsync(RelatorioAtual);
             RelatorioAtual = new Relatorio();
-            await CarregarRelatorios();
+            await CarregarRelatorio();
         }
 
         private async Task ExcluirRelatorio(Relatorio rel)
         {
             await App.Database.DeleteRelatorioAsync(rel); // Este método precisa ser criado
-            await CarregarRelatorios();
+            await CarregarRelatorio();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
