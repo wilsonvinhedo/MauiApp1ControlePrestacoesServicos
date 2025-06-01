@@ -9,7 +9,7 @@
                HorizontalOptions="Center"
                Margin="0,0,0,10"/>
 
-        <CollectionView x:Name="relatorioCollection">
+        <CollectionView x:Name="relatorioCollection" ItemsSource="{Binding .}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="0,5">

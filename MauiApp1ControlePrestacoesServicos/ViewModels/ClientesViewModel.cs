@@ -49,13 +49,16 @@ namespace MauiApp1ControlePrestacoesServicos.ViewModels
             await Carregar();
         }
 
+        internal async Task ExcluirCliente(Cliente clienteSelecionado)
+        {
+            if (clienteSelecionado == null) return;
+
+            await App.Database.DeleteAsync(clienteSelecionado);
+            await Carregar();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        internal async Task ExcluirCliente(Cliente clienteSelecionado)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
