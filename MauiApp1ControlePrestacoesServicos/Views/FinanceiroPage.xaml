@@ -21,11 +21,11 @@
                                 <SwipeItem Text="Excluir" BackgroundColor="Red" Invoked="OnDeleteFinanceiro"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Descricao}" FontSize="18"/>
-                            <Label Text="{Binding Valor}" FontSize="14"/>
-                            <Label Text="{Binding Data}" FontSize="12"/>
-                            <Label Text="Pago: {Binding Pago}" FontSize="12"/>
+                        <Grid Padding="10" RowDefinitions="Auto,Auto,Auto,Auto">
+                            <Label Text="{Binding Descricao, StringFormat='Descrição: {0}'}" FontSize="18" Grid.Row="0"/>
+                            <Label Text="{Binding Valor, StringFormat='Valor: R$ {0:F2}'}" FontSize="14" Grid.Row="1"/>
+                            <Label Text="{Binding Data, StringFormat='Data: {0:dd/MM/yyyy}'}" FontSize="12" Grid.Row="2"/>
+                            <Label Text="{Binding Pago, StringFormat='Pago: {0}'}" FontSize="12" Grid.Row="3"/>
                         </Grid>
                     </SwipeView>
                 </DataTemplate>
@@ -34,3 +34,4 @@
     </VerticalStackLayout>
 
 </ContentPage>
+

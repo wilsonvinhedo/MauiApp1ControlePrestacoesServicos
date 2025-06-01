@@ -3,6 +3,7 @@ using MauiApp1ControlePrestacoesServicos.Models;
 using System.IO;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace MauiApp1ControlePrestacoesServicos.Database
 {
@@ -23,7 +24,7 @@ namespace MauiApp1ControlePrestacoesServicos.Database
             await _database.CreateTableAsync<Servico>();
             await _database.CreateTableAsync<Agendamento>();
             await _database.CreateTableAsync<Financeiro>();
-            await _database.CreateTableAsync<Relatorio>(); // Adiciona Relatorio
+            await _database.CreateTableAsync<Relatorio>();
         }
 
         // Métodos genéricos
@@ -31,7 +32,7 @@ namespace MauiApp1ControlePrestacoesServicos.Database
         public Task<int> SaveAsync<T>(T item) where T : new() => _database.InsertOrReplaceAsync(item);
         public Task<int> DeleteAsync<T>(T item) where T : new() => _database.DeleteAsync(item);
 
-        // Métodos específicos por tipo (apenas se quiser usá-los no código)
+        // Métodos específicos
         public Task<List<Cliente>> GetClientesAsync() => _database.Table<Cliente>().ToListAsync();
         public Task<int> SaveClienteAsync(Cliente item) => _database.InsertOrReplaceAsync(item);
         public Task<int> DeleteClienteAsync(Cliente item) => _database.DeleteAsync(item);
@@ -52,59 +53,60 @@ namespace MauiApp1ControlePrestacoesServicos.Database
         public Task<int> SaveRelatorioAsync(Relatorio item) => _database.InsertOrReplaceAsync(item);
         public Task<int> DeleteRelatorioAsync(Relatorio item) => _database.DeleteAsync(item);
 
-        internal async Task<IEnumerable> GetItemsAsync<T>()
+        // Implementação dos métodos internos que estavam lançando exceção
+        internal async Task<IEnumerable> GetItemsAsync<T>() where T : new()
         {
-            throw new NotImplementedException();
-        }
-
-        internal async Task SaveItemAsync(Agendamento agendamento)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal async Task DeleteItemAsync(Agendamento agendamento)
-        {
-            throw new NotImplementedException();
+            return await _database.Table<T>().ToListAsync();
         }
 
         internal async Task SaveItemAsync(Cliente cliente)
         {
-            throw new NotImplementedException();
+            await _database.InsertOrReplaceAsync(cliente);
         }
 
         internal async Task DeleteItemAsync(Cliente cliente)
         {
-            throw new NotImplementedException();
-        }
-
-        internal async Task SaveItemAsync(Financeiro financeiro)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal async Task DeleteItemAsync(Financeiro registro)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal async Task SaveItemAsync(Relatorio relatorio)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal async Task DeleteItemAsync(Relatorio relatorio)
-        {
-            throw new NotImplementedException();
+            await _database.DeleteAsync(cliente);
         }
 
         internal async Task SaveItemAsync(Servico servico)
         {
-            throw new NotImplementedException();
+            await _database.InsertOrReplaceAsync(servico);
         }
 
         internal async Task DeleteItemAsync(Servico servico)
         {
-            throw new NotImplementedException();
+            await _database.DeleteAsync(servico);
+        }
+
+        internal async Task SaveItemAsync(Agendamento agendamento)
+        {
+            await _database.InsertOrReplaceAsync(agendamento);
+        }
+
+        internal async Task DeleteItemAsync(Agendamento agendamento)
+        {
+            await _database.DeleteAsync(agendamento);
+        }
+
+        internal async Task SaveItemAsync(Financeiro financeiro)
+        {
+            await _database.InsertOrReplaceAsync(financeiro);
+        }
+
+        internal async Task DeleteItemAsync(Financeiro financeiro)
+        {
+            await _database.DeleteAsync(financeiro);
+        }
+
+        internal async Task SaveItemAsync(Relatorio relatorio)
+        {
+            await _database.InsertOrReplaceAsync(relatorio);
+        }
+
+        internal async Task DeleteItemAsync(Relatorio relatorio)
+        {
+            await _database.DeleteAsync(relatorio);
         }
     }
 }

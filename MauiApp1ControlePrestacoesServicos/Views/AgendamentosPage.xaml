@@ -20,11 +20,11 @@
                                 <SwipeItem Text="Excluir" BackgroundColor="Red" Invoked="OnDeleteAgendamento"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Data}" FontSize="14"/>
-                            <Label Text="{Binding Observacoes}" FontSize="14"/>
-                            <Label Text="Cliente ID: {Binding ClienteId}" FontSize="12"/>
-                            <Label Text="Serviço ID: {Binding ServicoId}" FontSize="12"/>
+                        <Grid Padding="10" RowDefinitions="Auto,Auto,Auto,Auto">
+                            <Label Text="{Binding Data, StringFormat='Data: {0:dd/MM/yyyy}'}" FontSize="14" Grid.Row="0"/>
+                            <Label Text="{Binding Observacoes, StringFormat='Obs: {0}'}" FontSize="14" Grid.Row="1"/>
+                            <Label Text="{Binding ClienteId, StringFormat='Cliente ID: {0}'}" FontSize="12" Grid.Row="2"/>
+                            <Label Text="{Binding ServicoId, StringFormat='Serviço ID: {0}'}" FontSize="12" Grid.Row="3"/>
                         </Grid>
                     </SwipeView>
                 </DataTemplate>

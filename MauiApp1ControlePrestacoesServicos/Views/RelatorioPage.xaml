@@ -1,31 +1,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1ControlePrestacoesServicos.Views.RelatorioPage"
-             Title="Relatório">
+             Title="Relatório de Serviços">
 
     <VerticalStackLayout Padding="10">
-        <Entry x:Name="descricaoEntry" Placeholder="Descrição"/>
-        <Editor x:Name="detalhesEntry" Placeholder="Detalhes"/>
-
-        <Button Text="Adicionar Relatório" Clicked="OnAddRelatorio"/>
+        <Label Text="Relatório de Serviços Cadastrados"
+               FontSize="20"
+               HorizontalOptions="Center"
+               Margin="0,0,0,10"/>
 
         <CollectionView x:Name="relatorioCollection">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Excluir" BackgroundColor="Red" Invoked="OnDeleteRelatorio"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Descricao}" FontSize="18"/>
-                            <Label Text="{Binding Detalhes}" FontSize="14"/>
-                        </Grid>
-                    </SwipeView>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="0,5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Nome}" FontSize="18" FontAttributes="Bold"/>
+                            <Label Text="{Binding Descricao}" FontSize="14"/>
+                            <Label Text="{Binding Valor, StringFormat='Valor: {0:C}'}" FontSize="14" TextColor="Green"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
 
 </ContentPage>
+

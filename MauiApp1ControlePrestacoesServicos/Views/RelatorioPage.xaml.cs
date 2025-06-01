@@ -12,32 +12,15 @@ namespace MauiApp1ControlePrestacoesServicos.Views
 
         private async void LoadRelatorio()
         {
-            var relatorio = await App.Database.GetItemsAsync<Relatorio>();
-            relatorioCollection.ItemsSource = relatorio;
-        }
-
-        private async void OnAddRelatorio(object sender, EventArgs e)
-        {
-            var relatorio = new Relatorio
+            try
             {
-                Descricao = descricaoEntry.Text,
-                Detalhes = detalhesEntry.Text
-            };
-
-            await App.Database.SaveItemAsync(relatorio);
-            descricaoEntry.Text = detalhesEntry.Text = string.Empty;
-            LoadRelatorio();
-        }
-
-        private async void OnDeleteRelatorio(object sender, EventArgs e)
-        {
-            var swipeItem = sender as SwipeItem;
-            var relatorio = swipeItem.BindingContext as Relatorio;
-
-            if (relatorio != null)
+                // Pega todos os serviços cadastrados no banco
+                var servicos = await App.Database.GetItemsAsync<Servico>();
+                relatorioCollection.ItemsSource = servicos;
+            }
+            catch (Exception ex)
             {
-                await App.Database.DeleteItemAsync(relatorio);
-                LoadRelatorio();
+                await DisplayAlert("Erro", $"Erro ao carregar relatório: {ex.Message}", "OK");
             }
         }
     }
